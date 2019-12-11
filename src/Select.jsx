@@ -189,7 +189,7 @@ class Select extends Component {
       return
     }
     const optionRef = list.children[index]
-    optionRef.focus()
+    optionRef.focus({ preventScroll: true })
   }
 
   scrollToSelected(duration) {
