@@ -50,13 +50,15 @@ export default class Picker extends Component {
     onClose: PropTypes.func,
     onFocus: PropTypes.func,
     onBlur: PropTypes.func,
+    onKeyDown: PropTypes.func,
+    onKeyUp: PropTypes.func,
+    onKeyPress: PropTypes.func,
     addon: PropTypes.func,
     name: PropTypes.string,
     use12Hours: PropTypes.bool,
     hourStep: PropTypes.number,
     minuteStep: PropTypes.number,
     secondStep: PropTypes.number,
-    onKeyDown: PropTypes.func,
     id: PropTypes.string,
     ariaLabelFunc: PropTypes.func
   }
@@ -83,9 +85,11 @@ export default class Picker extends Component {
     onClose: noop,
     onFocus: noop,
     onBlur: noop,
+    onKeyDown: noop,
+    onKeyUp: noop,
+    onKeyPress: noop,
     addon: noop,
     use12Hours: false,
-    onKeyDown: noop,
     ariaLabelFunc: noop
   }
 
@@ -268,11 +272,24 @@ export default class Picker extends Component {
       className,
       name,
       inputReadOnly,
-      ariaLabelFunc
+      ariaLabelFunc,
+      onFocus,
+      onBlur,
+      onKeyDown,
+      onKeyPress,
+      onKeyUp
     } = this.props
     const { open, value } = this.state
     return (
-      <div className={`${prefixCls}-wrapper ${className}`}>
+      <div
+        className={`${prefixCls}-wrapper ${className}`}
+        id={id}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        onKeyDown={onKeyDown}
+        onKeyPress={onKeyPress}
+        onKeyUp={onKeyUp}
+      >
         {open ? (
           this.getPanelElement()
         ) : (
